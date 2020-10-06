@@ -1,0 +1,38 @@
+@import '../../styles/vars';
+
+table {
+  width: 100%;
+  margin-top: 1rem;
+  border: 2px solid $white;
+  border-collapse: collapse;
+
+  .highlight {
+    font-weight: bold;
+    color: $white;
+    background-color: $app-hover-color;
+  }
+
+  th,
+  td {
+    padding: 0.8rem;
+    border: 1px solid $white;
+  }
+
+  th {
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  tbody {
+    cursor: pointer;
+
+    :hover {
+      background-color: $app-hover-color;
+    }
+  }
+
+  .numberVal {
+    width: 10%;
+  }
+}

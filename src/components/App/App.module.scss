@@ -1,0 +1,55 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.wrapper {
+  width: 50%;
+}
+
+.pad {
+  padding: 1rem;
+}
+
+.headingWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.heading {
+  display: inline-block;
+  position: relative;
+  padding-left: 36px;
+  margin: 0;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    transform: translateY(-50%);
+    background-image: url(../../assets/earth.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+}
+
+.daypicker {
+  display: flex;
+  justify-content: flex-end;
+
+  input {
+    text-align: center;
+  }
+}
+
+.subText {
+  text-align: right;
+}
