@@ -8,22 +8,26 @@ const useAsyncEqData = (selectedDate: string) => {
   const [eqs, setEqArray] = useState<EqObject[][]>([]);
 
   const requestEqs = useCallback(async () => {
-    try {
-      const query = `format=geojson&orderby=magnitude&starttime=${selectedDate}&endtime=${getNextdayWithDash(
-        selectedDate
-      )}&limit=${QUELY_LIMIT}`;
-      const url = `https://earthquake.usgs.gov/fdsnws/event/1/query?${query}`;
-      const { features } = await (await fetch(url)).json();
+    const query = `format=geojson&orderby=magnitude&starttime=${selectedDate}&endtime=${getNextdayWithDash(
+      selectedDate
+    )}&limit=${QUELY_LIMIT}`;
+    const url = `https://earthquake.usgs.gov/fdsnws/event/1/query?${query}`;
+    const res = await fetch(url);
+    if (res.status === 200) {
+      const { features } = await res.json();
       const normalized = features.length > 0 ? normalize(features) : [];
-
-      if (normalized) setEqArray(normalized);
-    } catch (error) {
-      console.log(error);
+      setEqArray(normalized);
+    } else {
+      throw new Error(`Error occurred! ${res.status}`);
     }
   }, [selectedDate]);
 
   useEffect(() => {
-    if (selectedDate) requestEqs();
+    try {
+      if (selectedDate) requestEqs();
+    } catch (error) {
+      console.error(error);
+    }
   }, [selectedDate, requestEqs]);
 
   return [eqs];
