@@ -18,41 +18,39 @@ const Table = ({ eqs, state: { eqsIndex, selectedId }, dispatch }: Props) => {
   };
 
   return (
-    <>
-      <table className={styles.table} onClick={handleTdClick}>
-        <thead>
-          <tr>
-            <th>Place</th>
-            <th className={styles.numberVal}>Mag</th>
-            <th className={styles.numberVal}>Depth</th>
-            <th>Time</th>
-          </tr>
-        </thead>
-        <tbody>
-          {eqs.length > 0 &&
-            eqs[eqsIndex!].map(
-              ({ id, mag, place, time, depth }: EqObject, index: number) => {
-                const trClass =
-                  id === selectedId ? `${styles.highlight}` : undefined;
+    <table className={styles.table} onClick={handleTdClick}>
+      <thead>
+        <tr>
+          <th>Place</th>
+          <th className={styles.numberVal}>Mag</th>
+          <th className={styles.numberVal}>Depth</th>
+          <th>Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        {eqs.length > 0 &&
+          eqs[eqsIndex!].map(
+            ({ id, mag, place, time, depth }: EqObject, index: number) => {
+              const trClass =
+                id === selectedId ? `${styles.highlight}` : undefined;
 
-                return (
-                  <tr
-                    key={id}
-                    className={trClass}
-                    data-id={id}
-                    data-index={index}
-                  >
-                    <td>{place}</td>
-                    <td>{mag}</td>
-                    <td>{depth}</td>
-                    <td>{time}</td>
-                  </tr>
-                );
-              }
-            )}
-        </tbody>
-      </table>
-    </>
+              return (
+                <tr
+                  key={id}
+                  className={trClass}
+                  data-id={id}
+                  data-index={index}
+                >
+                  <td>{place}</td>
+                  <td>{mag}</td>
+                  <td>{depth}</td>
+                  <td>{time}</td>
+                </tr>
+              );
+            }
+          )}
+      </tbody>
+    </table>
   );
 };
 
